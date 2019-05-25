@@ -25,6 +25,7 @@ public class Wire : MonoBehaviour
     private List<GameObject> colliders = new List<GameObject>();                     //碰撞器物体集合.
     private void Awake()
     {
+
         lr = gameObject.GetComponent<LineRenderer>();
         if (lr == null)
         {
@@ -84,15 +85,19 @@ public class Wire : MonoBehaviour
         //控制点.
         Vector3 controlPos = centerPos + vertical * offset;
 
+        //线段.
         Gizmos.color = Color.white;
         Gizmos.DrawLine(startPos.position, endPos.position);
 
+        //平面法线.
         Gizmos.color = Color.red;
         Gizmos.DrawLine(centerPos, controlPos + planeNormal.normalized * 5);
 
+        //人为确定的方向.
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(startPos.position, startPos.position + otherDir.normalized * 5);
 
+        //中垂线.
         Gizmos.color = Color.green;
         Gizmos.DrawLine(centerPos, centerPos + vertical.normalized * 5);
     }
